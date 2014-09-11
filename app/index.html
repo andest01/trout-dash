@@ -17,31 +17,94 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   </head>
   <body ng-app="troutApp">
+  <!-- <div ng-controller="MainController">
+        <leaflet width="640px" height="480px"></leaflet>
+      </div> -->
+      
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
-        </ul>
-        <h3 class="text-muted">trout</h3>
-      </div>
-
-      <div ng-controller="MainController">
-        <leaflet width="640px" height="480px"></leaflet>
-      </div>
-
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
+    <div data-header>
     </div>
+
+    <div id="container">
+          <!-- <div data-sidebar>
+      </div> -->
+        <div data-sidebar id="sidebar">
+          <div class="sidebar-wrapper">
+            <div class="panel panel-default" id="features">
+              <div class="panel-heading">
+                <h3 class="panel-title">Points of Interest
+                <button type="button" class="btn btn-xs btn-default pull-right" id="sidebar-hide-btn"><i class="fa fa-chevron-left"></i></button></h3>
+              </div>
+              <div class="panel-body">
+                <p>
+                  <div class="row">
+                    <div class="col-xs-8 col-md-8">
+                      <input type="text" class="form-control search" placeholder="Filter" />
+                    </div>
+                    <div class="col-xs-4 col-md-4">
+                      <button type="button" class="btn btn-primary pull-right sort" data-sort="feature-name" id="sort-btn"><i class="fa fa-sort"></i>&nbsp;&nbsp;Sort</button>
+                    </div>
+                  </div>
+                </p>
+              </div>
+              <div class="sidebar-table">
+                <table class="table table-hover" id="feature-list">
+                  <thead class="hidden">
+                    <tr>
+                      <th>Icon</th>
+                    <tr>
+                    <tr>
+                      <th>Name</th>
+                    <tr>
+                    <tr>
+                      <th>Chevron</th>
+                    <tr>
+                  </thead>
+                  <tbody class="list">
+                    <tr style="cursor: pointer;"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name" id="1200">Amenda Creek</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>
+
+                    <tr style="cursor: pointer;"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name" id="1200">Amenda Creek</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>
+
+                    <tr style="cursor: pointer;"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name" id="1200">Amenda Creek</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>
+
+                    <tr style="cursor: pointer;"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name" id="1200">Amenda Creek</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>
+
+                    <tr style="cursor: pointer;"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name" id="1200">Amenda Creek</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>
+
+
+                    <tr style="cursor: pointer;"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name" id="1200">Amenda Creek</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>
+
+                    <tr style="cursor: pointer;"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name" id="1200">Amenda Creek</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>
+
+                    <tr style="cursor: pointer;"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name" id="1200">Amenda Creek</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>
+
+                    <tr style="cursor: pointer;"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name" id="1200">Amenda Creek</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>
+
+                    <tr style="cursor: pointer;"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name" id="1200">Amenda Creek</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div id="map" data-map></div>
+    </div>
+<!--     <div id="loading">
+      <div class="loading-indicator">
+        <div class="progress progress-striped active">
+          <div class="progress-bar progress-bar-info progress-bar-full"></div>
+        </div>
+      </div>
+    </div> -->
+
+
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -78,6 +141,12 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/services/streamapiservice.js"></script>
+        <script src="scripts/directives/header.js"></script>
+        <script src="scripts/directives/sidebar.js"></script>
+        <script src="scripts/directives/map.js"></script>
+        <script src="scripts/directives/streamlistshort.js"></script>
+        <script src="scripts/directives/streamlistlong.js"></script>
         <!-- endbuild -->
 </body>
 </html>
