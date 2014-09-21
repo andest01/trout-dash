@@ -1,18 +1,19 @@
 'use strict';
 
-describe('Service: streamApiService', function () {
+describe('Service: StreamApiService', function () {
 
   // load the service's module
   beforeEach(module('troutApp'));
 
   // instantiate service
-  var streamApiService;
-  beforeEach(inject(function (_streamApiService_) {
-    streamApiService = _streamApiService_;
+  var StreamApiService;
+  beforeEach(inject(function (_StreamApiService_) {
+    StreamApiService = _StreamApiService_;
   }));
 
   it('should do something', function () {
-    expect(!!streamApiService).toBe(true);
+    debugger;
+    expect(!!StreamApiService).toBe(true);
   });
 
 });
