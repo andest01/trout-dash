@@ -2,8 +2,8 @@
         <div class="sidebar-wrapper">
           <div class="panel panel-default" id="features">
             <div class="panel-heading">
-              <h3 class="panel-title">Points of Interest
-              <button type="button" class="btn btn-xs btn-default pull-right" id="sidebar-hide-btn"><i class="fa fa-chevron-left"></i></button></h3>
+<!--               <h3 class="panel-title">Points of Interest
+              <button type="button" class="btn btn-xs btn-default pull-right" id="sidebar-hide-btn"><i class="fa fa-chevron-left"></i></button></h3> -->
             </div>
             <div class="panel-body">
               <p>
@@ -31,27 +31,9 @@
                   <tr>
                 </thead>
                 <tbody class="list">
-                  <tr style="cursor: pointer;"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name" id="1200">Amenda Creek</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>
-
-                  <tr style="cursor: pointer;"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name" id="1200">Amenda Creek</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>
-
-                  <tr style="cursor: pointer;"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name" id="1200">Amenda Creek</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>
-
-                  <tr style="cursor: pointer;"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name" id="1200">Amenda Creek</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>
-
-                  <tr style="cursor: pointer;"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name" id="1200">Amenda Creek</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>
-
-
-                  <tr style="cursor: pointer;"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name" id="1200">Amenda Creek</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>
-
-                  <tr style="cursor: pointer;"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name" id="1200">Amenda Creek</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>
-
-                  <tr style="cursor: pointer;"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name" id="1200">Amenda Creek</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>
-
-                  <tr style="cursor: pointer;"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name" id="1200">Amenda Creek</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>
-
-                  <tr style="cursor: pointer;"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name" id="1200">Amenda Creek</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>
-
+                  <tr ng-repeat="stream in streams" style="cursor: pointer;">
+                    <td class="feature-name" id="1200">{{stream.properties.KITTLE_NAM}}</td>
+                  </tr>
                 </tbody>
               </table>
             </div>

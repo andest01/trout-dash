@@ -24,7 +24,7 @@ angular.module('troutApp')
                 return cachedStreamsDeferred.promise;
         	}
         	
-    		var gettingStreams = this.doCall({}, 'data/minnesota/SouthEastern.json');
+    		var gettingStreams = this.doCall({}, 'data/minnesota/DaveIsWrong.geojson');
     		gettingStreams.then(function(response) {
                 this.cache.set(key, response);
                 return response;

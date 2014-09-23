@@ -15,6 +15,6 @@ angular
     'LocalStorageModule',
     'ui.router'
   ])
-  .config(['localStorageServiceProvider', function(localStorageServiceProvider){
+  .config(['localStorageServiceProvider', '$stateProvider', function(localStorageServiceProvider, $stateProvider){
 		localStorageServiceProvider.setPrefix('trout-dash');
 	}]);

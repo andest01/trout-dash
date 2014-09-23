@@ -11,9 +11,10 @@ angular.module('troutApp')
     return {
       templateUrl: 'views/sidebar.html',
       restrict: 'A',
-      link: function postLink(scope) {
+      link: function postLink(scope, element, attrs) {
       	scope.onGetStreamsSuccess = function(streams) {
-      		console.log(streams);
+          console.log(streams);
+      		scope.streams = streams.features;
       	};
 
       	scope.onGetStreamsFailure = function(reason) {
