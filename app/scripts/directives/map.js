@@ -12,7 +12,13 @@ angular.module('troutApp')
       templateUrl: 'views/map.html',
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
-        // element.text('this is the map directive');
+        // scope.center = {
+        // 	lat: 43.35713822211053,
+        // 	lng: -92.1533203125,
+        // 	zoom: 5
+        // };
+
+        // 45.1861307,-92.1527944
       }
     };
   });

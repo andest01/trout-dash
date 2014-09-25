@@ -22,14 +22,13 @@ angular.module('troutApp')
       	};
 
       	scope.onGetStreamsProgress = function(data) {
- 			console.log('progress', data);
+ 			    console.log('progress', data);
       	};
 
-      	console.log(StreamApiService);
-      	var gettingStreams = StreamApiService.getStreams();
-      	gettingStreams.then(scope.onGetStreamsSuccess, 
-      		scope.onGetStreamsFailure,
-      		scope.onGetStreamsProgress);
-      }
+      	StreamApiService.getStreams('minnesota', 'saintCroix')
+          .then(scope.onGetStreamsSuccess, 
+            scope.onGetStreamsFailure,
+            scope.onGetStreamsProgress);
+        }
     };
   }]);
