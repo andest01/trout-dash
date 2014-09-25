@@ -29,8 +29,10 @@ angular.module('troutApp')
         };
 
         $scope.tile = {
-            url: "http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png",
+            url: "http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png",
             options: {
+                detectRetina: true,
+                reuseTiles: true,
                 attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>'
             }
         };
@@ -41,7 +43,7 @@ angular.module('troutApp')
         $scope.defaults = {
             tileLayer: "http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png",
             tileLayerOptions: {
-                opacity: 0.9,
+                // opacity: 0.9,
                 detectRetina: true,
                 reuseTiles: true,
             }
