@@ -12,9 +12,8 @@ angular
   .module('troutApp', [
     'ngAnimate',
     'leaflet-directive',
-    'LocalStorageModule',
-    'ui.router'
+    'LocalStorageModule'
   ])
-  .config(['localStorageServiceProvider', '$stateProvider', function(localStorageServiceProvider, $stateProvider){
+  .config(['localStorageServiceProvider', function(localStorageServiceProvider){
 		localStorageServiceProvider.setPrefix('trout-dash');
 	}]);
