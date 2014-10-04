@@ -19,7 +19,6 @@ var troutApp = angular
   		function(localStorageServiceProvider, $routeProvider, $locationProvider){
 		localStorageServiceProvider.setPrefix('trout-dash');
 		console.log('lolol');
-		$locationProvider.html5Mode(true);
 		$routeProvider
 			.when('/blog', {
 				templateUrl: '../views/blog.html',
