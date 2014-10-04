@@ -32,8 +32,24 @@ var troutApp = angular
 				templateUrl: '../views/tips.html',
 				controller: 'TipsCtrl'
 			})
+			.when('/streams', {
+				templateUrl: '../views/streamSearch.html',
+				controller: 'StreamsearchCtrl'
+			})
+			.when('/streams/:region', {
+				templateUrl: '../views/streamSearch.html',
+				controller: 'StreamsearchCtrl'
+			})
+			.when('/streams/:region/:watershed', {
+				templateUrl: '../views/streamSearch.html',
+				controller: 'StreamsearchCtrl'
+			})
+			.when('/streams/:region/:watershed/:id', {
+				templateUrl: '../views/streamSearch.html',
+				controller: 'StreamsearchCtrl'
+			})
 			.otherwise({
-				redirectTo: '/blog'
+				redirectTo: '/streams'
 		});
 
 			console.log('finished');
