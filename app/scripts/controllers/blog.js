@@ -7,11 +7,8 @@
  * # BlogCtrl
  * Controller of the troutApp
  */
+console.log('loading blog controller');
 angular.module('troutApp')
   .controller('BlogCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    console.log('snoop bloggy blog');
   });
