@@ -9,6 +9,7 @@
  */
 angular.module('troutApp')
   .controller('MapCtrl', ['$scope', 'StreamApiService', function ($scope, StreamApiService) {
+        
         StreamApiService.getStreams('minnesota', 'saintCroix')
         .then(function(data) {
             $scope.geojson = { 

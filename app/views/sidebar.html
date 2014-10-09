@@ -31,9 +31,14 @@
                   <tr>
                 </thead>
                 <tbody class="list">
-                  <tr ng-repeat="stream in streams" style="cursor: pointer;">
-                    <td class="feature-name" id="1200">{{stream.properties.kittle_nam}}</td>
-                  </tr>
+                  <stream-list-item ng-repeat="stream in streams" style="cursor: pointer;">
+<!--                     <td class="feature-name" id="1200">
+                    <a href ui-sref="123">
+                      {{stream.properties.kittle_nam}}
+                    </a>
+                    </td> -->
+                    hello
+                  </stream-list-item>
                 </tbody>
               </table>
             </div>
