@@ -19,7 +19,7 @@ angular.module('troutApp')
       		link: '/streams/' + p.gid,
       		length: p.length
       	};
-        console.log(scope.viewModel.link);
+        // console.log(scope.viewModel.link);
       }
     };
   });
