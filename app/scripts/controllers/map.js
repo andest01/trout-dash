@@ -8,19 +8,24 @@
  * Controller of the troutApp
  */
 angular.module('troutApp')
-  .controller('MapCtrl', ['$scope', 'StreamApiService', function ($scope, StreamApiService) {
-        
+  .controller('MapCtrl', ['$scope', 'StreamApiService', '$stateParams', '$state', function ($scope, StreamApiService, $stateParams, $state) {
+        console.log($stateParams);
+        $scope.selectedStreamId = $stateParams.streamId;
         StreamApiService.getStreams('minnesota', 'saintCroix')
         .then(function(data) {
             $scope.geojson = { 
                 data: data,
                 style: {
                     fillColor: 'green',
-                    weight: 1,
+                    weight: 10,
                     opacity: 1,
                     color: 'blue'
                 }
             };
+
+            // if ($scope.selectedStreamId != null) {
+            //     $scope.selectedStream = 
+            // }
         });
 
         $scope.center = {
@@ -49,4 +54,14 @@ angular.module('troutApp')
                 reuseTiles: true,
             }
         };
+
+        $scope.navigateToStream = function(streamId) {
+            console.log('navigating to... ', streamId);
+            $state.go('streamSearch.specificStream', { streamId: streamId});
+        };
+
+        $scope.$on('leafletDirectiveMap.geojsonClick', function(event, target) {
+            var streamId = target.properties.gid
+            $scope.navigateToStream(streamId);
+        });
   }]);
