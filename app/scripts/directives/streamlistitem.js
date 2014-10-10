@@ -16,7 +16,7 @@ angular.module('troutApp')
       	scope.viewModel = {
       		id: p.gid,
       		name: p.kittle_nam,
-      		link: '/streams/' + p.gid,
+      		link: p.gid,
       		length: p.length
       	};
         // console.log(scope.viewModel.link);

@@ -30,7 +30,7 @@ var troutApp = angular
 					controller: 'StreamsearchCtrl'
 				})
 				.state('streamSearch.specificStream', {
-					url: '^{streamId}',
+					url: '/{streamId}',
 					views: {
 						'specificStream': {
 							templateUrl: '../views/map.html',
@@ -38,17 +38,6 @@ var troutApp = angular
 						}
 					}
 				})
-				// .state('streamSearch.map', {
-				// 	url: '/streams',
-				// 	templateUrl: '../views/streamSearch.html'
-				// })
-				// .state('state1.list', {
-				// 	url: '/list',
-				// 	templateUrl: 'partials/state1.list.html',
-				// 	controller: function($scope) {
-				// 		$scope.items = ['A', 'List', 'Of', 'Items'];
-				// 	}
-				// })
 				.state('blog', {
 					url: '/blog',
 					templateUrl: '../views/blog.html',
