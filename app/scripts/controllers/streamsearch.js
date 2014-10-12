@@ -9,6 +9,4 @@
  */
 angular.module('troutApp')
   .controller('StreamsearchCtrl', function ($scope, $stateParams) {
-    console.log('streamSearchController');
-    console.log('streams controller params ', $stateParams);
   });

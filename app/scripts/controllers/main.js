@@ -12,6 +12,14 @@ angular.module('troutApp')
 
   function MainController($scope, StreamApiService, leafletData, $rootScope) {
   	$rootScope.$on('$routeChangeSuccess', function() {
-  		console.log('route change');
+  		
+  	});
+
+  	$rootScope.$on('selectedStreamChanged', function(newStream, oldStream) {
+  		if (newStream == null && oldStream == null) {
+  			return;
+  		}
+
+  		console.log(newStream);
   	});
   }

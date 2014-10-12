@@ -7,9 +7,11 @@
  * # MapCtrl
  * Controller of the troutApp
  */
+
+ var MAP_ELEMENT_ID = 'map';
+
 angular.module('troutApp')
-  .controller('MapCtrl', ['$scope', 'StreamApiService', '$stateParams', '$state', function ($scope, StreamApiService, $stateParams, $state) {
-        console.log($stateParams);
+  .controller('MapCtrl', ['$scope', 'StreamApiService', '$stateParams', '$state', 'leafletData', '$q', function ($scope, StreamApiService, $stateParams, $state, leafletData, $q) {
         $scope.selectedStreamId = $stateParams.streamId;
         StreamApiService.getStreams('minnesota', 'saintCroix')
         .then(function(data) {
@@ -22,14 +24,46 @@ angular.module('troutApp')
                     color: 'blue'
                 }
             };
+            if ($scope.selectedStreamId == null) {
+                return;
+            }
 
-            // if ($scope.selectedStreamId != null) {
-            //     $scope.selectedStream = 
-            // }
+            var gettingMap = leafletData.getMap(MAP_ELEMENT_ID);
+            var gettingStream = StreamApiService.getStream('minnesota', 'saintCroix', $scope.selectedStreamId);
+            $q.all([gettingMap, gettingStream]).then(function(result) {
+                var map = result.shift();
+                var stream = result.shift();
+
+                if (map == null) {
+                    throw new Error('map not found');
+                }
+
+
+
+            }, function(reason) {
+                console.log('get map failure ', reason);
+            });
+
+
+            // leafletData
+            debugger;
+            var gettingLayers = leafletData.getLayers(MAP_ELEMENT_ID).then(function(layers) {
+                console.log('layers', layers);
+            }, function(reason) {
+                console.log('failed to get layers: ', reason);
+            });
+
+            var gettingGeoJson = leafletData.getGeoJSON(MAP_ELEMENT_ID).then(function(getGeoJSON) {
+                console.log('getGeoJSON', getGeoJSON);
+                debugger;
+            });
+
         });
 
+        
+
         $scope.center = {
-            lat: 43.35713822211053,
+            lat: 48.35713822211053,
             lng: -92.1533203125,
             zoom: 7
         };
@@ -61,7 +95,12 @@ angular.module('troutApp')
         };
 
         $scope.$on('leafletDirectiveMap.geojsonClick', function(event, target) {
-            var streamId = target.properties.gid
-            $scope.navigateToStream(streamId);
+            var streamId = target.properties.gid;
+            var gettingGeoJson = leafletData.getGeoJSON(MAP_ELEMENT_ID).then(function(getGeoJSON) {
+                console.log('getGeoJSON', getGeoJSON);
+                debugger;
+            });
+            
+            // $scope.navigateToStream(streamId);
         });
   }]);

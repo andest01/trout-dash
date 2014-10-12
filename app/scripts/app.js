@@ -48,7 +48,6 @@ var troutApp = angular
 					templateUrl: '../views/tips.html',
 					controller: 'TipsCtrl'
 				});
-			console.log('finished');
 	}]);
 
 // .run(['$rootScope', '$urlRouter', '$location', '$state', function ($rootScope, $urlRouter, $location, $state) {

@@ -56,8 +56,26 @@ angular.module('troutApp')
             }
         };
 
-        proto.getStream = function(state, region, streamId) {
-    		console.log(streamId);
+        proto.getStream = function(state, region, soughtStreamId) {
+            soughtStreamId = parseInt(soughtStreamId);
+    		var gettingStreams = $q.defer();
+            this.getStreams(state, region).then(function(streams) {
+                console.log(streams);
+                var filteredStreams = streams.features.filter(function(stream) {
+                    var id = stream.properties.gid;
+                    return id === soughtStreamId;
+                });
+
+                if (filteredStreams == null) {
+                    gettingStreams.reject('could not find stream');
+                    return;
+                }
+
+                var soughtStream = filteredStreams[0];
+                gettingStreams.resolve(soughtStream);
+
+            });
+            return gettingStreams.promise;
         };
 
         return new StreamApiService();

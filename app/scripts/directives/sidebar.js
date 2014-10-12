@@ -19,10 +19,7 @@ angular.module('troutApp')
           length: 342
         };
 
-        console.log(scope.stream);
-
       	scope.onGetStreamsSuccess = function(streams) {
-          console.log(streams);
       		scope.streams = streams.features;
       	};
 
@@ -36,12 +33,9 @@ angular.module('troutApp')
 
         scope.onStreamClick = function(selectedStream) {
           var newPath = '/streams/' + selectedStream.properties.gid;
-          console.log('new path', newPath);
           // console.log('old path', $location.path());
           // $location.path(newPath);
         };
-
-        console.log(scope.stream);
 
       	StreamApiService.getStreams('minnesota', 'saintCroix')
           .then(scope.onGetStreamsSuccess, 
