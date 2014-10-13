@@ -846,8 +846,12 @@ UrlMatcher.prototype.exec = function (path, searchParams) {
  *    pattern has no parameters, an empty array is returned.
  */
 UrlMatcher.prototype.parameters = function (param) {
-  if (!isDefined(param)) return objectKeys(this.params);
-  return this.params[param] || null;
+  var defined = isDefined(param);
+  if (!defined) {
+    return objectKeys(this.params);
+  }
+  var result = this.params[param];
+  return result || null;
 };
 
 /**

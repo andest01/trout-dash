@@ -27,14 +27,23 @@ var troutApp = angular
 				.state('streamSearch', {
 					url: '/streams',
 					templateUrl: '../views/streamSearch.html',
-					controller: 'StreamsearchCtrl'
+					controller: 'StreamsearchCtrl',
+					reloadOnSearch: false
 				})
 				.state('streamSearch.specificStream', {
 					url: '/{streamId}',
+					params: {
+								streamId: {
+									value: null,
+									dynamic: true
+								}
+							},
+							
 					views: {
 						'specificStream': {
 							templateUrl: '../views/map.html',
 							controller: 'MapCtrl'
+							
 						}
 					}
 				})

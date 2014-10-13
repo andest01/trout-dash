@@ -11,7 +11,7 @@
  var MAP_ELEMENT_ID = 'map';
 
 angular.module('troutApp')
-  .controller('MapCtrl', ['$scope', 'StreamApiService', '$stateParams', '$state', 'leafletData', '$q', function ($scope, StreamApiService, $stateParams, $state, leafletData, $q) {
+  .controller('MapCtrl', ['$scope', 'StreamApiService', '$stateParams', '$state', 'leafletData', '$q', '$rootScope', function ($scope, StreamApiService, $stateParams, $state, leafletData, $q, $rootScope) {
         $scope.selectedStreamId = $stateParams.streamId;
         StreamApiService.getStreams('minnesota', 'saintCroix')
         .then(function(data) {
@@ -46,7 +46,6 @@ angular.module('troutApp')
 
 
             // leafletData
-            debugger;
             var gettingLayers = leafletData.getLayers(MAP_ELEMENT_ID).then(function(layers) {
                 console.log('layers', layers);
             }, function(reason) {
@@ -55,7 +54,6 @@ angular.module('troutApp')
 
             var gettingGeoJson = leafletData.getGeoJSON(MAP_ELEMENT_ID).then(function(getGeoJSON) {
                 console.log('getGeoJSON', getGeoJSON);
-                debugger;
             });
 
         });
@@ -94,13 +92,25 @@ angular.module('troutApp')
             $state.go('streamSearch.specificStream', { streamId: streamId});
         };
 
+        $scope.$on('$locationChangeSuccess', function(x) {
+            console.log('stuff changed lol', x, $stateParams);
+        });
+
         $scope.$on('leafletDirectiveMap.geojsonClick', function(event, target) {
             var streamId = target.properties.gid;
             var gettingGeoJson = leafletData.getGeoJSON(MAP_ELEMENT_ID).then(function(getGeoJSON) {
                 console.log('getGeoJSON', getGeoJSON);
-                debugger;
             });
-            
+
+            // $scope.navigateToStream(streamId);
+        });
+
+        $scope.$on('leafletDirectiveMap.geojsonClick', function(event, target) {
+            var streamId = target.properties.gid;
+            var gettingGeoJson = leafletData.getGeoJSON(MAP_ELEMENT_ID).then(function(getGeoJSON) {
+                console.log('getGeoJSON', getGeoJSON);
+            });
+
             // $scope.navigateToStream(streamId);
         });
   }]);
