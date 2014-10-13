@@ -3,3 +3,9 @@ dist
 .tmp
 .sass-cache
 bower_components
+/backend/TroutStreamMangler/TroutDash.EntityFramework/bin
+/backend/TroutStreamMangler/TroutDash.EntityFramework/obj
+/backend/TroutStreamMangler/TroutDash.TroutStreamExporter/obj
+/backend/TroutStreamMangler/TroutDash.TroutStreamExporter/bin
+/backend/TroutStreamMangler/TroutStreamMangler/obj
+/backend/TroutStreamMangler/TroutStreamMangler/bin
