@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TroutStreamMangler", "TroutStreamMangler\TroutStreamMangler.csproj", "{0128C895-025A-4CE0-B1E6-E99E67D77910}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TroutDash.EntityFramework", "TroutDash.EntityFramework\TroutDash.EntityFramework.csproj", "{17F7A0A3-92FA-4ECF-979B-566B76755EA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TroutDash.TroutStreamExporter", "TroutDash.TroutStreamExporter\TroutDash.TroutStreamExporter.csproj", "{DDB07582-D33C-4F68-B458-D83452527B80}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0128C895-025A-4CE0-B1E6-E99E67D77910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0128C895-025A-4CE0-B1E6-E99E67D77910}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0128C895-025A-4CE0-B1E6-E99E67D77910}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0128C895-025A-4CE0-B1E6-E99E67D77910}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17F7A0A3-92FA-4ECF-979B-566B76755EA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17F7A0A3-92FA-4ECF-979B-566B76755EA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17F7A0A3-92FA-4ECF-979B-566B76755EA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17F7A0A3-92FA-4ECF-979B-566B76755EA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDB07582-D33C-4F68-B458-D83452527B80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDB07582-D33C-4F68-B458-D83452527B80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDB07582-D33C-4F68-B458-D83452527B80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDB07582-D33C-4F68-B458-D83452527B80}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

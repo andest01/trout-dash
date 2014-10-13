@@ -1,0 +1,5 @@
+C:\Users\FloorMonster\Documents\GitHub\trout-dash\backend\TroutStreamMangler\TroutDash.TroutStreamExporter\bin\Debug\TroutDash.TroutStreamExporter.dll
+C:\Users\FloorMonster\Documents\GitHub\trout-dash\backend\TroutStreamMangler\TroutDash.TroutStreamExporter\bin\Debug\TroutDash.TroutStreamExporter.pdb
+C:\Users\FloorMonster\Documents\GitHub\trout-dash\backend\TroutStreamMangler\TroutDash.TroutStreamExporter\obj\Debug\TroutDash.TroutStreamExporter.csprojResolveAssemblyReference.cache
+C:\Users\FloorMonster\Documents\GitHub\trout-dash\backend\TroutStreamMangler\TroutDash.TroutStreamExporter\obj\Debug\TroutDash.TroutStreamExporter.dll
+C:\Users\FloorMonster\Documents\GitHub\trout-dash\backend\TroutStreamMangler\TroutDash.TroutStreamExporter\obj\Debug\TroutDash.TroutStreamExporter.pdb
