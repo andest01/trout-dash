@@ -11,106 +11,127 @@
  var MAP_ELEMENT_ID = 'map';
 
 angular.module('troutApp')
-  .controller('MapCtrl', ['$scope', 'StreamApiService', '$stateParams', '$state', 'leafletData', '$q', '$rootScope', function ($scope, StreamApiService, $stateParams, $state, leafletData, $q, $rootScope) {
-        $scope.selectedStreamId = $stateParams.streamId;
+  .controller('MapCtrl', ['$scope', 'StreamApiService', '$stateParams', '$state', '$q', '$location', function ($scope, StreamApiService, $stateParams, $state, $q, $location) {
+
+        $scope.streamLocations = [];
+
+        $scope.$watch('selectedStreamId', function(newStreamId, oldStreamId) {
+            if (newStreamId == null || newStreamId <= 0) {
+                return;
+            }
+
+            if (newStreamId === oldStreamId) {
+                return;
+            }
+
+            console.log('new stream id: ', newStreamId);
+            // var soughtFeatures = $scope.streamLocations.filter(function(feature) {
+            //     var isMatch = feature.id === newStreamId;
+            //     return isMatch;
+            // });
+
+            // if (soughtFeatures.length !== 1) {
+            //     return;
+            // }
+
+            // var soughtFeature = soughtFeatures[0];
+            var soughtFeature = $scope.getLayer(newStreamId);
+
+            $scope.map.fitBounds(soughtFeature.layer);
+        });
+
+        $scope.getLayer = function(soughtStreamId) {
+            var soughtFeatures = $scope.streamLocations.filter(function(feature) {
+                var isMatch = feature.id === soughtStreamId;
+                return isMatch;
+            });
+
+            if (soughtFeatures.length !== 1) {
+                return;
+            }
+
+            var soughtFeature = soughtFeatures[0];
+
+            return soughtFeature;
+        };
+
         StreamApiService.getStreams('minnesota', 'saintCroix')
         .then(function(data) {
-            $scope.geojson = { 
-                data: data,
-                style: {
-                    fillColor: 'green',
-                    weight: 10,
-                    opacity: 1,
-                    color: 'blue'
-                }
-            };
             if ($scope.selectedStreamId == null) {
                 return;
             }
 
-            var gettingMap = leafletData.getMap(MAP_ELEMENT_ID);
-            var gettingStream = StreamApiService.getStream('minnesota', 'saintCroix', $scope.selectedStreamId);
-            $q.all([gettingMap, gettingStream]).then(function(result) {
-                var map = result.shift();
-                var stream = result.shift();
-
-                if (map == null) {
-                    throw new Error('map not found');
-                }
-
-
-
-            }, function(reason) {
-                console.log('get map failure ', reason);
+            var stamenTiles = L.tileLayer('http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png', {
+              maxZoom: 18,
+              attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>'
             });
 
+            var streams = L.geoJson(data, {
+              style: function (feature) {
+                return {
+                  color: '#4E7F84',
+                  fill: false,
+                  opacity: 1,
+                  clickable: true,
+                  weight: 3
+                };
+              },
+              onEachFeature: function (feature, layer) {
+                $scope.streamLocations.push({
+                    bounds: layer.getBounds(),
+                    layer: layer,
+                    id: feature.properties.gid,
+                    name: feature.properties.name
+                });
 
-            // leafletData
-            var gettingLayers = leafletData.getLayers(MAP_ELEMENT_ID).then(function(layers) {
-                console.log('layers', layers);
-            }, function(reason) {
-                console.log('failed to get layers: ', reason);
+                layer.on({
+                    click: function (event, l) {
+                        var feature = event.target.feature;
+                        var streamId = feature.properties.gid;
+                        console.log('clicked stream: ', feature, streamId);
+                        $scope.navigateToStream(streamId);
+
+                    },
+                    mouseOver: function(event) {
+                        console.log('mouse over');
+                        var layer = e.target;
+
+                        layer.setStyle({
+                            weight: 8,
+                        });
+
+                        if (!L.Browser.ie && !L.Browser.opera) {
+                            layer.bringToFront();
+                        }
+                    },
+
+                    mouseOut: function(event) {
+                        var feature = event.target.feature;
+                        var streamId = feature.properties.gid;
+                        var currentStreamId = $scope.getStreamId();
+                        if (currentStreamId !== streamId) {
+                            $scope.streams.resetStyle(e.target);
+                        }
+                    }
+                });
+              }
             });
 
-            var gettingGeoJson = leafletData.getGeoJSON(MAP_ELEMENT_ID).then(function(getGeoJSON) {
-                console.log('getGeoJSON', getGeoJSON);
-            });
+            $scope.mapSettings = {
+                zoom: 6,
+                center: [46.05713822211053, -92.1533203125],
+                layers: [stamenTiles, streams],
+                zoomControl: true,
+                attributionControl: false
+            };
 
-        });
-
-        
-
-        $scope.center = {
-            lat: 48.35713822211053,
-            lng: -92.1533203125,
-            zoom: 7
-        };
-
-        $scope.tile = {
-            url: "http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png",
-            options: {
-                detectRetina: true,
-                reuseTiles: true,
-                attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>'
+            $scope.map = L.map('map', $scope.mapSettings);
+            var currentStream = $scope.getStreamId();
+            if (currentStream != null && currentStream > 0) {
+                var soughtLayer = $scope.getLayer(currentStream);
+                $scope.map.fitBounds(soughtLayer.layer);
             }
-        };
-
-        // attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>'
-
-
-        $scope.defaults = {
-            tileLayer: "http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png",
-            tileLayerOptions: {
-                // opacity: 0.9,
-                detectRetina: true,
-                reuseTiles: true,
-            }
-        };
-
-        $scope.navigateToStream = function(streamId) {
-            console.log('navigating to... ', streamId);
-            $state.go('streamSearch.specificStream', { streamId: streamId});
-        };
-
-        $scope.$on('$locationChangeSuccess', function(x) {
-            console.log('stuff changed lol', x, $stateParams);
         });
 
-        $scope.$on('leafletDirectiveMap.geojsonClick', function(event, target) {
-            var streamId = target.properties.gid;
-            var gettingGeoJson = leafletData.getGeoJSON(MAP_ELEMENT_ID).then(function(getGeoJSON) {
-                console.log('getGeoJSON', getGeoJSON);
-            });
-
-            // $scope.navigateToStream(streamId);
-        });
-
-        $scope.$on('leafletDirectiveMap.geojsonClick', function(event, target) {
-            var streamId = target.properties.gid;
-            var gettingGeoJson = leafletData.getGeoJSON(MAP_ELEMENT_ID).then(function(getGeoJSON) {
-                console.log('getGeoJSON', getGeoJSON);
-            });
-
-            // $scope.navigateToStream(streamId);
-        });
+      
   }]);

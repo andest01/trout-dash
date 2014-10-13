@@ -11,7 +11,6 @@
 var troutApp = angular
   .module('troutApp', [
     'ngAnimate',
-    'leaflet-directive',
     'LocalStorageModule',
     'ui.router'
     // 'ngRoute'

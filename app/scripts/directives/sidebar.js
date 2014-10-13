@@ -32,7 +32,7 @@ angular.module('troutApp')
       	};
 
         scope.onStreamClick = function(selectedStream) {
-          var newPath = '/streams/' + selectedStream.properties.gid;
+          scope.navigateToStream(selectedStream.properties.gid);
           // console.log('old path', $location.path());
           // $location.path(newPath);
         };

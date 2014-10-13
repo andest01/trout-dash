@@ -8,9 +8,9 @@
  * Controller of the troutApp
  */
 angular.module('troutApp')
-  .controller('MainController', ['$scope', 'StreamApiService', 'leafletData', '$rootScope',	MainController]);
+  .controller('MainController', ['$scope', 'StreamApiService', '$rootScope',	MainController]);
 
-  function MainController($scope, StreamApiService, leafletData, $rootScope) {
+  function MainController($scope, StreamApiServic, $rootScope) {
   	$rootScope.$on('$routeChangeSuccess', function() {
   		
   	});
