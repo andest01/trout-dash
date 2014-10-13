@@ -11,9 +11,15 @@ angular.module('troutApp')
     return {
       templateUrl: 'views/sidebar.html',
       restrict: 'A',
-      link: function postLink(scope, element, attrs) {
+      link: function postLink(scope /*, element, attrs*/) {
+        scope.viewModel = {
+          name: scope.stream,
+          link: 'asdfasdf',
+          id: 123,
+          length: 342
+        };
+
       	scope.onGetStreamsSuccess = function(streams) {
-          console.log(streams);
       		scope.streams = streams.features;
       	};
 
@@ -24,6 +30,12 @@ angular.module('troutApp')
       	scope.onGetStreamsProgress = function(data) {
  			    console.log('progress', data);
       	};
+
+        scope.onStreamClick = function(selectedStream) {
+          var newPath = '/streams/' + selectedStream.properties.gid;
+          // console.log('old path', $location.path());
+          // $location.path(newPath);
+        };
 
       	StreamApiService.getStreams('minnesota', 'saintCroix')
           .then(scope.onGetStreamsSuccess, 

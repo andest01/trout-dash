@@ -12,6 +12,7 @@ angular.module('troutApp')
       templateUrl: 'views/map.html',
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
+        console.log('map directive');
         // scope.center = {
         // 	lat: 43.35713822211053,
         // 	lng: -92.1533203125,
